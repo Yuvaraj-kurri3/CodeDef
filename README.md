@@ -33,7 +33,7 @@ Stay tuned — a full case study portfolio is coming soon!
 
 Want to work with us or have a question?
 
-- **Website**: [Coming Soon]  
+- **Website**: [https://codedef.vercel.app/]  
 - **Email**: [Coming Soon] 
 - **LinkedIn**: [Coming Soon]
 - **Instagram**: [https://instagram.com/yuvarajkurri],[https://instagram.com/growerdhan4]
