@@ -1,0 +1,391 @@
+/* ===========================
+   NAVBAR STYLES — CodeDef
+   =========================== */
+
+/* ---------- Base ---------- */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    height: var(--nav-height);
+    transition: background var(--transition-med),
+        border-color var(--transition-med),
+        box-shadow var(--transition-med),
+        backdrop-filter var(--transition-med);
+}
+
+/* Transparent by default */
+.navbar::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: transparent;
+    border-bottom: 1px solid transparent;
+    transition: background var(--transition-med),
+        border-color var(--transition-med);
+    pointer-events: none;
+}
+
+/* Glassmorphism on scroll */
+.navbar--scrolled::before {
+    background: rgba(10, 10, 15, 0.82);
+    backdrop-filter: blur(20px) saturate(1.8);
+    -webkit-backdrop-filter: blur(20px) saturate(1.8);
+    border-bottom-color: var(--border-color);
+    box-shadow: 0 4px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* ---------- Inner Layout ---------- */
+.navbar__inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    height: 100%;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    position: relative;
+}
+
+/* ---------- LOGO ---------- */
+.navbar__logo {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    flex-shrink: 0;
+    text-decoration: none;
+    position: relative;
+    z-index: 1001;
+}
+
+.navbar__logo-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, rgba(79, 110, 242, 0.25) 0%, rgba(79, 110, 242, 0.05) 100%);
+    border: 1px solid rgba(79, 110, 242, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform var(--transition-fast),
+        box-shadow var(--transition-fast);
+}
+
+.navbar__logo:hover .navbar__logo-icon {
+    transform: rotate(-8deg) scale(1.1);
+    box-shadow: 0 0 16px var(--accent-glow);
+}
+
+.navbar__logo-text {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+    transition: color var(--transition-fast);
+}
+
+.navbar__logo-accent {
+    color: var(--accent-blue-light);
+}
+
+/* ---------- Desktop Nav Links ---------- */
+.navbar__links {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    flex: 1;
+    justify-content: center;
+}
+
+.navbar__link-item {
+    position: relative;
+}
+
+.navbar__link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 0.85rem;
+    font-size: 0.925rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-decoration: none;
+    border-radius: 8px;
+    transition: color var(--transition-fast),
+        background var(--transition-fast);
+    overflow: hidden;
+}
+
+.navbar__link:hover {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.navbar__link--active {
+    color: var(--text-primary);
+}
+
+/* Animated underline */
+.navbar__link-underline {
+    position: absolute;
+    bottom: 4px;
+    left: 0.85rem;
+    right: 0.85rem;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent-blue), var(--accent-blue-light));
+    border-radius: 2px;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.navbar__link:hover .navbar__link-underline,
+.navbar__link--active .navbar__link-underline {
+    transform: scaleX(1);
+}
+
+/* ---------- CTA Button ---------- */
+.navbar__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.55rem 1.25rem;
+    background: var(--accent-blue);
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: 8px;
+    text-decoration: none;
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+    transition: transform var(--transition-fast),
+        box-shadow var(--transition-fast),
+        background var(--transition-fast);
+    z-index: 1001;
+}
+
+/* Shine sweep */
+.navbar__cta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 0.22),
+            transparent);
+    transform: skewX(-15deg);
+    transition: left 0.6s ease;
+}
+
+.navbar__cta:hover::before {
+    left: 125%;
+}
+
+.navbar__cta:hover {
+    background: var(--accent-blue-light);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(79, 110, 242, 0.45);
+}
+
+.navbar__cta:active {
+    transform: translateY(0);
+}
+
+.navbar__cta-arrow {
+    transition: transform var(--transition-fast);
+}
+
+.navbar__cta:hover .navbar__cta-arrow {
+    transform: translate(2px, -2px);
+}
+
+/* ---------- Hamburger ---------- */
+.navbar__hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-color);
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1001;
+    transition: background var(--transition-fast);
+}
+
+.navbar__hamburger:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.navbar__ham-line {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: var(--text-primary);
+    border-radius: 2px;
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+        opacity 0.25s ease,
+        width 0.3s ease;
+    transform-origin: center;
+}
+
+/* Open state */
+.navbar__hamburger--open .navbar__ham-line--top {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.navbar__hamburger--open .navbar__ham-line--mid {
+    opacity: 0;
+    width: 0;
+}
+
+.navbar__hamburger--open .navbar__ham-line--bot {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* ---------- Mobile Overlay ---------- */
+.navbar__mobile-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(10, 10, 15, 0.97);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.35s ease, visibility 0.35s ease;
+}
+
+.navbar__mobile-overlay--open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.navbar__mobile-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+    max-width: 360px;
+    padding: 1.5rem;
+}
+
+.navbar__mobile-item {
+    width: 100%;
+    transform: translateY(24px);
+    opacity: 0;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+        opacity 0.4s ease;
+}
+
+.navbar__mobile-overlay--open .navbar__mobile-item {
+    transform: translateY(0);
+    opacity: 1;
+    transition-delay: var(--delay, 0s);
+}
+
+.navbar__mobile-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    width: 100%;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    text-decoration: none;
+    border-radius: 12px;
+    transition: color var(--transition-fast),
+        background var(--transition-fast),
+        transform var(--transition-fast);
+    letter-spacing: -0.02em;
+}
+
+.navbar__mobile-link:hover {
+    color: var(--text-primary);
+    background: rgba(79, 110, 242, 0.1);
+    transform: translateX(6px);
+}
+
+.navbar__mobile-link--active {
+    color: var(--accent-blue-light);
+}
+
+.navbar__mobile-link-num {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--accent-blue);
+    letter-spacing: 0.05em;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    margin-top: 4px;
+    min-width: 20px;
+}
+
+/* Mobile CTA */
+.navbar__cta--mobile {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 12px;
+    margin-top: 1rem;
+}
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+@media (max-width: 768px) {
+    .navbar__links {
+        display: none;
+    }
+
+    .navbar__cta:not(.navbar__cta--mobile) {
+        display: none;
+    }
+
+    .navbar__hamburger {
+        display: flex;
+    }
+
+    .navbar__inner {
+        padding: 0 1.25rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .navbar__logo-text {
+        font-size: 1.05rem;
+    }
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+    }
+}

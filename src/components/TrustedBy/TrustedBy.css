@@ -1,0 +1,169 @@
+/* ════════════════════════════════════════════════════
+   TrustedBy  –  "Trusted By Innovators" Section
+   Right-to-left infinite marquee
+════════════════════════════════════════════════════ */
+
+/* ── Section wrapper ──────────────────────────────── */
+.trusted-by {
+    width: 100%;
+    padding: 3rem 0 3.5rem;
+    background: transparent;
+    /* sits on the same dark background as Hero */
+    overflow: hidden;
+    position: relative;
+}
+
+/* ── Section label (small caps header above strip) ── */
+.trusted-by__label {
+    text-align: center;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.35);
+    margin: 0 0 2rem;
+    user-select: none;
+}
+
+/* ── Track wrapper (clips overflow + holds fades) ─── */
+.trusted-by__track-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* ── Fade edges (left & right) ──────────────────────
+   Creates a smooth transparency transition so the
+   strip looks like it disappears at both ends.
+────────────────────────────────────────────────────── */
+.trusted-by__fade {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 8rem;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.trusted-by__fade--left {
+    left: 0;
+    background: linear-gradient(to right, #0a0a0f, transparent);
+}
+
+.trusted-by__fade--right {
+    right: 0;
+    background: linear-gradient(to left, #0a0a0f, transparent);
+}
+
+/* ── Scrolling track ────────────────────────────────
+   display:flex keeps all items in one row.
+   The track is animated with translateX from 0 to -50%
+   (because we doubled the brands array, so -50% = one
+    full set of items → seamless loop).
+────────────────────────────────────────────────────── */
+.trusted-by__track {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    /* spacing handled by item padding */
+    width: max-content;
+    /* allow track to be wider than viewport */
+    animation: marquee-rtl 28s linear infinite;
+    will-change: transform;
+}
+
+/* Pause on hover – lets users read the brand names */
+.trusted-by__track-wrapper:hover .trusted-by__track {
+    animation-play-state: paused;
+}
+
+/* ── Keyframe: right → left ─────────────────────────
+   We shift by exactly 50% because:
+     - JSX renders: [brands × 2]
+     - 50% of max-content = 1 complete set
+   After reaching -50% the loop resets to 0 → seamless
+────────────────────────────────────────────────────── */
+@keyframes marquee-rtl {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+/* ── Individual brand item ──────────────────────────── */
+.trusted-by__item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0 2.8rem;
+    /* horizontal space between brands */
+    cursor: default;
+    flex-shrink: 0;
+    transition: opacity 0.3s ease;
+    opacity: 0.55;
+}
+
+.trusted-by__item:hover {
+    opacity: 1;
+}
+
+/* Thin vertical divider between items */
+.trusted-by__item::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    height: 1.2rem;
+    width: 1px;
+    background: rgba(255, 255, 255, 0.12);
+}
+
+/* ── Brand icon container ───────────────────────────── */
+.trusted-by__icon {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.trusted-by__icon img {
+    width: 100%;
+    height: 150%;
+}
+
+/* ── Brand name text ────────────────────────────────── */
+.trusted-by__name {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.75);
+    white-space: nowrap;
+    letter-spacing: 0.03em;
+}
+
+/* ── Responsive tweaks ──────────────────────────────── */
+@media (max-width: 768px) {
+    .trusted-by {
+        padding: 2rem 0 2.5rem;
+    }
+
+    .trusted-by__fade {
+        width: 4rem;
+    }
+
+    .trusted-by__item {
+        padding: 0 1.8rem;
+    }
+
+    .trusted-by__name {
+        font-size: 0.82rem;
+    }
+
+    /* Slightly faster scroll on mobile */
+    .trusted-by__track {
+        animation-duration: 20s;
+    }
+}

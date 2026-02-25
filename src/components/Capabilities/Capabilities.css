@@ -1,0 +1,377 @@
+/* ════════════════════════════════════════════════════════════════
+   Capabilities  –  "Our Capabilities" Section
+   Bento-style card grid with hover-expand + icon-zoom animations
+════════════════════════════════════════════════════════════════ */
+
+/* ── CSS custom property defaults ────────────────────────────── */
+:root {
+    --cap-bg: #0a0a0f;
+    --cap-card: #111118;
+    --cap-border: rgba(255, 255, 255, 0.07);
+    --cap-radius: 18px;
+    --cap-gap: 16px;
+}
+
+/* ── Section wrapper ─────────────────────────────────────────── */
+.capabilities {
+    width: 100%;
+    padding: 6rem 1.5rem 7rem;
+    background: var(--cap-bg);
+    position: relative;
+    overflow: hidden;
+}
+
+/* subtle radial glow behind the whole section */
+.capabilities::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 60% 40% at 50% 0%, rgba(79, 110, 242, 0.08), transparent);
+    pointer-events: none;
+}
+
+/* ── Section header ──────────────────────────────────────────── */
+.capabilities__header {
+    text-align: center;
+    max-width: 680px;
+    margin: 0 auto 3.5rem;
+}
+
+.capabilities__eyebrow {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.35);
+    margin: 0 0 1.2rem;
+}
+
+.capabilities__heading {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 800;
+    line-height: 1.15;
+    color: #fff;
+    margin: 0 0 1rem;
+    letter-spacing: -0.03em;
+}
+
+.capabilities__heading-accent {
+    background: linear-gradient(135deg, #7c5cfc, #4f6ef2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.capabilities__sub {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.45);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* ── GRID ────────────────────────────────────────────────────────
+   Layout:
+     [ web  ][ web  ][ figma ]
+     [ app  ][ ai   ][ ai    ]
+     [ brand][ explore-----  ]
+
+   On hover, "active" card grows via flex/grid tricks
+──────────────────────────────────────────────────────────────── */
+.capabilities__grid {
+    display: grid;
+    max-width: 1100px;
+    margin: 0 auto;
+    gap: var(--cap-gap);
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto auto auto;
+    grid-template-areas:
+        "web   web   figma"
+        "app   ai    ai   "
+        "brand explore explore";
+}
+
+/* ── Base card styles ────────────────────────────────────────── */
+.cap-card {
+    position: relative;
+    background: var(--cap-card);
+    border: 1px solid var(--cap-border);
+    border-radius: var(--cap-radius);
+    padding: 1.75rem 1.75rem 1.5rem;
+    overflow: hidden;
+    cursor: pointer;
+    /* smooth expand / shrink on all properties */
+    transition:
+        transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
+        box-shadow 0.45s ease,
+        opacity 0.35s ease,
+        border-color 0.35s ease;
+    will-change: transform, box-shadow, opacity;
+}
+
+/* ── Glow blob (accent colour) ───────────────────────────────── */
+.cap-card__glow {
+    position: absolute;
+    inset: -60px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--glow, rgba(79, 110, 242, 0.2)), transparent 70%);
+    opacity: 0;
+    transform: scale(0.6);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ── Hover state: card expands / pops ────────────────────────── */
+.cap-card--active {
+    transform: scale(1.035);
+    border-color: var(--accent, #4f6ef2);
+    box-shadow:
+        0 0 0 1px var(--accent, #4f6ef2),
+        0 24px 48px -8px rgba(0, 0, 0, 0.55),
+        0 0 64px -16px var(--glow, rgba(79, 110, 242, 0.3));
+    z-index: 10;
+}
+
+.cap-card--active .cap-card__glow {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Mute sibling cards when one is active */
+.cap-card--muted {
+    opacity: 0.45;
+    transform: scale(0.975);
+}
+
+/* ── Icon – zooms on card hover ──────────────────────────────── */
+.cap-card__icon-wrap {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.3s ease;
+    position: relative;
+    z-index: 1;
+}
+
+/* Icon zooms when you hover directly over it */
+.cap-card__icon-wrap:hover {
+    transform: scale(1.22);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Icon also gently lifts when the whole card is active */
+.cap-card--active .cap-card__icon-wrap {
+    transform: scale(1.1);
+    background: rgba(255, 255, 255, 0.09);
+}
+
+/* Combine direct + card hover (direct wins) */
+.cap-card--active .cap-card__icon-wrap:hover {
+    transform: scale(1.28);
+}
+
+/* ── Card header row ─────────────────────────────────────────── */
+.cap-card__header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.1rem;
+    position: relative;
+    z-index: 1;
+}
+
+/* ── Eyebrow label ───────────────────────────────────────────── */
+.cap-card__label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent, #4f6ef2);
+}
+
+/* ── NEW / COMING SOON badge ─────────────────────────────────── */
+.cap-card__badge {
+    margin-left: auto;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--badge-color, #10b981);
+    border: 1px solid var(--badge-color, #10b981);
+    border-radius: 99px;
+    padding: 0.2em 0.65em;
+    white-space: nowrap;
+}
+
+/* ── Title ───────────────────────────────────────────────────── */
+.cap-card__title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0 0 0.6rem;
+    line-height: 1.3;
+    position: relative;
+    z-index: 1;
+}
+
+/* ── Description ─────────────────────────────────────────────── */
+.cap-card__desc {
+    font-size: 0.84rem;
+    color: rgba(255, 255, 255, 0.45);
+    line-height: 1.65;
+    margin: 0 0 1.25rem;
+    position: relative;
+    z-index: 1;
+}
+
+/* ── Tech pill row ───────────────────────────────────────────── */
+.cap-card__pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    position: relative;
+    z-index: 1;
+}
+
+.cap-card__pill {
+    font-size: 0.68rem;
+    font-weight: 600;
+    padding: 0.25em 0.7em;
+    border-radius: 99px;
+    color: var(--pill-color, #fff);
+    background: color-mix(in srgb, var(--pill-color, #fff) 12%, transparent);
+    border: 1px solid color-mix(in srgb, var(--pill-color, #fff) 30%, transparent);
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+}
+
+/* ── Decorative "HTML" type badge (web card) ─────────────────── */
+.cap-card__decor-badge {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    font-size: 1.1rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    opacity: 0.15;
+    border: 2px solid currentColor;
+    padding: 0.15em 0.5em;
+    border-radius: 6px;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+    z-index: 1;
+}
+
+.cap-card--active .cap-card__decor-badge {
+    opacity: 0.4;
+}
+
+/* ── Bottom-right arrow ──────────────────────────────────────── */
+.cap-card__arrow {
+    position: absolute;
+    bottom: 1.4rem;
+    right: 1.4rem;
+    color: rgba(255, 255, 255, 0.2);
+    transition: color 0.3s ease, transform 0.35s ease;
+    z-index: 1;
+}
+
+.cap-card--active .cap-card__arrow {
+    color: var(--accent, #4f6ef2);
+    transform: translate(3px, -3px);
+}
+
+/* ── "Explore all services" link card ───────────────────────── */
+.cap-card--explore {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.55);
+    text-decoration: none;
+    border-style: dashed;
+    padding: 1.5rem;
+    cursor: pointer;
+    transition:
+        color 0.3s ease,
+        border-color 0.3s ease,
+        background 0.3s ease,
+        transform 0.3s ease;
+}
+
+.cap-card--explore:hover {
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.04);
+    transform: none;
+    /* no expand for this one */
+    opacity: 1;
+}
+
+.cap-card--explore svg {
+    transition: transform 0.3s ease;
+}
+
+.cap-card--explore:hover svg {
+    transform: translateX(4px);
+}
+
+/* ── Ensure content stays above glow ────────────────────────── */
+.cap-card>*:not(.cap-card__glow) {
+    position: relative;
+    z-index: 1;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   RESPONSIVE
+════════════════════════════════════════════════════════════════ */
+
+/* Tablet: 2 columns */
+@media (max-width: 900px) {
+    .capabilities__grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+            "web   web  "
+            "figma figma"
+            "app   ai   "
+            "brand brand"
+            "explore explore";
+    }
+}
+
+/* Mobile: single column */
+@media (max-width: 560px) {
+    .capabilities {
+        padding: 4rem 1rem 5rem;
+    }
+
+    .capabilities__grid {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "web"
+            "figma"
+            "app"
+            "ai"
+            "brand"
+            "explore";
+    }
+
+    /* Disable expand animation on touch devices */
+    .cap-card--active {
+        transform: none;
+    }
+
+    .cap-card--muted {
+        opacity: 1;
+        transform: none;
+    }
+}
