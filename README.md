@@ -34,9 +34,9 @@ Stay tuned — a full case study portfolio is coming soon!
 Want to work with us or have a question?
 
 - **Website**: [Coming Soon]  
-- **Email**: `team.codedef@gmail.com` *(example)*  
-- **LinkedIn**: [linkedin.com/company/codedef](#)  
-- **Instagram**: [@codedef.agency](#)
+- **Email**: [Coming Soon] 
+- **LinkedIn**: [Coming Soon]
+- **Instagram**: [https://instagram.com/yuvarajkurri],[https://instagram.com/growerdhan4]
 
 ---
 
