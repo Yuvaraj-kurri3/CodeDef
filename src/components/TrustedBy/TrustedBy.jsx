@@ -13,14 +13,9 @@ const brands = [
     },
     {
         id: 2,
-        name: 'Microsoft',
+        name: 'Srinidhi Hostels',
         icon: (
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M11.4 2H2v9.4h9.4V2z" fill="#F25022" />
-                <path d="M22 2h-9.4v9.4H22V2z" fill="#7FBA00" />
-                <path d="M11.4 12.6H2V22h9.4v-9.4z" fill="#00A4EF" />
-                <path d="M22 12.6h-9.4V22H22v-9.4z" fill="#FFB900" />
-            </svg>
+          <img src="https://res.cloudinary.com/dtozixle0/image/upload/v1767552750/Gemini_Generated_Image_remrasremrasremr_bjdwyy.png" alt='SH' />
         ),
     },
        {
@@ -32,14 +27,9 @@ const brands = [
     },
     {
         id: 4,
-        name: 'Microsoft',
+        name: 'Srinidhi Hostels',
         icon: (
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M11.4 2H2v9.4h9.4V2z" fill="#F25022" />
-                <path d="M22 2h-9.4v9.4H22V2z" fill="#7FBA00" />
-                <path d="M11.4 12.6H2V22h9.4v-9.4z" fill="#00A4EF" />
-                <path d="M22 12.6h-9.4V22H22v-9.4z" fill="#FFB900" />
-            </svg>
+          <img src="https://res.cloudinary.com/dtozixle0/image/upload/v1767552750/Gemini_Generated_Image_remrasremrasremr_bjdwyy.png" alt='SH' />
         ),
     },
        {
@@ -51,14 +41,9 @@ const brands = [
     },
     {
         id: 6,
-        name: 'Microsoft',
+       name: 'Srinidhi Hostels',
         icon: (
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M11.4 2H2v9.4h9.4V2z" fill="#F25022" />
-                <path d="M22 2h-9.4v9.4H22V2z" fill="#7FBA00" />
-                <path d="M11.4 12.6H2V22h9.4v-9.4z" fill="#00A4EF" />
-                <path d="M22 12.6h-9.4V22H22v-9.4z" fill="#FFB900" />
-            </svg>
+          <img src="https://res.cloudinary.com/dtozixle0/image/upload/v1767552750/Gemini_Generated_Image_remrasremrasremr_bjdwyy.png" alt='SH' />
         ),
     },
        {
@@ -70,14 +55,9 @@ const brands = [
     },
     {
         id: 8,
-        name: 'Microsoft',
+       name: 'Srinidhi Hostels',
         icon: (
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M11.4 2H2v9.4h9.4V2z" fill="#F25022" />
-                <path d="M22 2h-9.4v9.4H22V2z" fill="#7FBA00" />
-                <path d="M11.4 12.6H2V22h9.4v-9.4z" fill="#00A4EF" />
-                <path d="M22 12.6h-9.4V22H22v-9.4z" fill="#FFB900" />
-            </svg>
+          <img src="https://res.cloudinary.com/dtozixle0/image/upload/v1767552750/Gemini_Generated_Image_remrasremrasremr_bjdwyy.png" alt='SH' />
         ),
     },
        {
@@ -89,14 +69,9 @@ const brands = [
     },
     {
         id: 10,
-        name: 'Microsoft',
+       name: 'Srinidhi Hostels',
         icon: (
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M11.4 2H2v9.4h9.4V2z" fill="#F25022" />
-                <path d="M22 2h-9.4v9.4H22V2z" fill="#7FBA00" />
-                <path d="M11.4 12.6H2V22h9.4v-9.4z" fill="#00A4EF" />
-                <path d="M22 12.6h-9.4V22H22v-9.4z" fill="#FFB900" />
-            </svg>
+          <img src="https://res.cloudinary.com/dtozixle0/image/upload/v1767552750/Gemini_Generated_Image_remrasremrasremr_bjdwyy.png" alt='SH' />
         ),
     }
 
@@ -112,7 +87,7 @@ const TrustedBy = () => {
         <section className="trusted-by" aria-label="Trusted by innovators">
 
             {/* Section header */}
-            <p className="trusted-by__label">TRUSTED BY INNOVATORS</p>
+            <p className="trusted-by__label">TRUSTED BY BUSINESS</p>
 
             {/* Marquee wrapper – clip overflow and fade edges */}
             <div className="trusted-by__track-wrapper">

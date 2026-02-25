@@ -36,7 +36,8 @@ Want to work with us or have a question?
 - **Website**: [https://codedef.vercel.app/]  
 - **Email**: [Coming Soon] 
 - **LinkedIn**: [Coming Soon]
-- **Instagram**: [https://instagram.com/yuvarajkurri],[https://instagram.com/growerdhan4]
+- **Instagram**: [https://instagram.com/yuvarajkurri]
+                ,[https://www.instagram.com/growerdhan_04/]
 
 ---
 
