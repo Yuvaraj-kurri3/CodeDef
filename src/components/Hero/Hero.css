@@ -577,7 +577,7 @@
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: center;
-        gap: 1rem;
+        gap: 1.25rem;
     }
 
     .hero__cards--left {
@@ -637,15 +637,28 @@
         padding: 0.65rem 1.2rem;
         font-size: 0.85rem;
     }
+
+    /* Remove rotation on mobile — tilted cards visually bleed into each other */
+    .hero-card--left:nth-child(1),
+    .hero-card--left:nth-child(2),
+    .hero-card--right:nth-child(1),
+    .hero-card--right:nth-child(2) {
+        transform: rotate(0deg);
+    }
+
+    /* Gap between the two card group rows */
+    .hero__cards {
+        gap: 1rem;
+    }
 }
 
 @media (max-width: 420px) {
     .hero__cards {
-        gap: 0.6rem;
+        gap: 1rem;
     }
 
     .hero-card {
-        width: 150px;
+        width: 148px;
     }
 
     .hero__actions {
